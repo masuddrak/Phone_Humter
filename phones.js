@@ -2,15 +2,25 @@
 const allPhone = async (phones) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${phones}`)
     const data = await res.json()
-    console.log(data)
     displayPhones(data.data)
 }
 const displayPhones = (phones) => {
+    // show all phone btn
+    const showAllPhoneContainer = document.getElementById("show_all_phone_container")
+    if(phones.length>12){
+        showAllPhoneContainer.classList.remove("hidden")
+    }
+    else{
+        showAllPhoneContainer.classList.add("hidden")
+    }
+    // some phones show
+    phones = phones.slice(0, 12)
     const card_container = document.getElementById("card_container")
-    card_container.innerText=""
+    card_container.innerText = ""
+    
     phones.forEach(phone => {
         let createPhone = document.createElement("div")
-        createPhone.classList=`card  bg-base-100 shadow-xl`
+        createPhone.classList = `card  bg-base-100 shadow-xl`
         createPhone.innerHTML = `
         <figure><img src="${phone.image}" />
                 </figure>
@@ -29,9 +39,9 @@ const displayPhones = (phones) => {
 
 // sarch function
 
-function searchPhones(){
-    const searchText=document.getElementById("search_text")
-    const searchValu=searchText.value
+function searchPhones() {
+    const searchText = document.getElementById("search_text")
+    const searchValu = searchText.value
     allPhone(searchValu)
 }
 
