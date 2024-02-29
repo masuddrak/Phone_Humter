@@ -1,5 +1,5 @@
 
-const allPhone = async (phones,isAll) => {
+const allPhone = async (phones="13",isAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${phones}`)
     const data = await res.json()
     displayPhones(data.data,isAll)
@@ -33,7 +33,7 @@ const displayPhones = (phones,isAll) => {
                     <h2 class="card-title">Phone Name: ${phone.phone_name}</h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div class="card-actions ">
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button onclick="detailsHandlar('${phone.slug}')" class="btn btn-primary">Buy Now</button>
                     </div>
                 </div>
         `
@@ -65,3 +65,18 @@ const spinerDisplay=(isLoading)=>{
 const handelShowAll=()=>{
     searchPhones(true)
 }
+// show details
+const detailsHandlar=async(id)=>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json()
+    showModal(data.data)
+}
+const showModal=(phone)=>{
+    console.log(phone)
+    document.getElementById("phone_image").src=phone.image
+    const phoneName=document.getElementById("phone_name")
+    phoneName.innerText=`Name: ${phone.name}`
+    document.getElementById("phon_brand").innerText=`Brand: ${phone.brand}`
+    my_modal_5.showModal()
+}
+allPhone()
