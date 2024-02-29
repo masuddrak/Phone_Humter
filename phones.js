@@ -1,20 +1,25 @@
 
-const allPhone = async (phones) => {
+const allPhone = async (phones,isAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${phones}`)
     const data = await res.json()
-    displayPhones(data.data)
+    displayPhones(data.data,isAll)
 }
-const displayPhones = (phones) => {
+const displayPhones = (phones,isAll) => {
+    console.log("hello",isAll)
+   
     // show all phone btn
     const showAllPhoneContainer = document.getElementById("show_all_phone_container")
-    if(phones.length>12){
+    if(phones.length>12 && !isAll){
         showAllPhoneContainer.classList.remove("hidden")
     }
     else{
         showAllPhoneContainer.classList.add("hidden")
     }
     // some phones show
-    phones = phones.slice(0, 12)
+    
+    if(!isAll){
+        phones = phones.slice(0, 12)
+    }
     const card_container = document.getElementById("card_container")
     card_container.innerText = ""
     
@@ -39,11 +44,11 @@ const displayPhones = (phones) => {
 }
 
 // sarch function
-function searchPhones() {
+function searchPhones(isAll) {
     spinerDisplay(true)
     const searchText = document.getElementById("search_text")
     const searchValu = searchText.value
-    allPhone(searchValu)
+    allPhone(searchValu,isAll)
 }
 // spiner handelar
 const spinerDisplay=(isLoading)=>{
@@ -54,4 +59,9 @@ const spinerDisplay=(isLoading)=>{
     else{
         spiner.classList.add("hidden")
     }
+}
+
+// hadel show all
+const handelShowAll=()=>{
+    searchPhones(true)
 }
