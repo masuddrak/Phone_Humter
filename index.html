@@ -15,12 +15,17 @@
 </head>
 
 <body>
-    <h1 class="text-4xl">Phone Hunter</h1>
-    <h1>hello</h1>
+    <header class="w-8/12 mx-auto text-center my-5">
+        <h1 class="text-4xl">Phone Hunter</h1>
+        <div>
+            <input id="search_text" type="text" placeholder="search phone" class="input input-bordered w-full max-w-xs" />
+            <button onclick="searchPhones()" class="btn btn-accent">Search</button>
+        </div>
+    </header>
 
     <main>
-        <section id="card_container" class="cards grid grid-cols-4 w-8/12 mx-auto">
-            
+        <section id="card_container" class="cards grid grid-cols-4 w-8/12 mx-auto gap-5">
+
         </section>
 
 
