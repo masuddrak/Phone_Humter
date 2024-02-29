@@ -34,14 +34,24 @@ const displayPhones = (phones) => {
         `
         card_container.appendChild(createPhone)
     });
+    spinerDisplay(false)
 
 }
 
 // sarch function
-
 function searchPhones() {
+    spinerDisplay(true)
     const searchText = document.getElementById("search_text")
     const searchValu = searchText.value
     allPhone(searchValu)
 }
-
+// spiner handelar
+const spinerDisplay=(isLoading)=>{
+    const spiner=document.getElementById("spiner")
+    if(isLoading){
+        spiner.classList.remove("hidden")
+    }
+    else{
+        spiner.classList.add("hidden")
+    }
+}

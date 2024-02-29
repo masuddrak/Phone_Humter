@@ -18,8 +18,15 @@
     <header class="w-8/12 mx-auto text-center my-5">
         <h1 class="text-4xl">Phone Hunter</h1>
         <div>
-            <input id="search_text" type="text" placeholder="search phone" class="input input-bordered w-full max-w-xs" />
+            <input id="search_text" type="text" placeholder="search phone"
+                class="input input-bordered w-full max-w-xs" />
             <button onclick="searchPhones()" class="btn btn-accent">Search</button>
+        </div>
+        <div id="spiner" class="mt-40 hidden">
+            <span class="loading loading-ball loading-xs"></span>
+            <span class="loading loading-ball loading-sm"></span>
+            <span class="loading loading-ball loading-md"></span>
+            <span class="loading loading-ball loading-lg"></span>
         </div>
     </header>
 
@@ -29,7 +36,7 @@
         </section>
         <!-- show all phones -->
         <div id="show_all_phone_container" class="hidden">
-            <button  class="btn btn-accent">show all phones</button>
+            <button class="btn btn-accent">show all phones</button>
         </div>
 
     </main>
